@@ -1,0 +1,44 @@
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
+namespace lesson9拓展方法练习题
+{
+   
+    class Player
+    {
+        public string name;
+        public int hp;
+        public int gongji;
+        public int fangyu;
+         public void Move()
+        {
+            Console.WriteLine("角色的正在移动");
+        }
+        static public void Gongji()
+        {
+            Console.WriteLine("角色正在攻击");
+        }
+        static public void Hart()
+        {
+            Console.WriteLine("角色受伤了");
+        }
+    }
+    static class SpeakInto
+    {
+        public static void Zisha(this Player p)
+        {
+            Console.WriteLine("{0}自杀了", p.name);
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Player p = new Player();
+            p.name = "张三";
+            p.Zisha();
+        }
+    }
+
+}
