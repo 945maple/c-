@@ -3,8 +3,9 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace lesson9拓展方法练习题
 {
-   
-    class Player
+   //写一个玩家类，包含姓名、血量、攻击力、防御力等特征，攻击、移动、受伤等方法
+   //为该玩家拓展一个自杀的方法
+     public class Player
     {
         public string name;
         public int hp;
@@ -14,11 +15,11 @@ namespace lesson9拓展方法练习题
         {
             Console.WriteLine("角色的正在移动");
         }
-        static public void Gongji()
+         public void Gongji()
         {
             Console.WriteLine("角色正在攻击");
         }
-        static public void Hart()
+         public void Hart()
         {
             Console.WriteLine("角色受伤了");
         }
