@@ -1,0 +1,36 @@
+namespace lesson12继承_练习题
+{
+//写一个人类，人类中有姓名、年龄属性，有说话行为，战士类继承人类，有攻击行为
+class  Person
+    {
+        public int age;
+        public string name;
+        public void Speakname()
+        {
+            Console.WriteLine("我的名字是{0}", name);
+            Console.WriteLine("我 的年龄是{0}岁", age);
+        }
+    }
+    class Warrior:Person
+    {
+        public string attact;
+        public void Attact()
+        {
+            
+            Console.WriteLine("我战士族的大招是{0}", attact);
+
+        }
+    }
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+         Warrior w=new Warrior();
+            w.name = "张三";
+            w.age = 18;
+            w.attact = "天崩地裂！！！！";
+            w.Speakname();
+            w.Attact();
+        }
+    }
+}
