@@ -1,0 +1,97 @@
+namespace lesson13_练习题2
+{
+    #region 练习题二2
+    //题2：FPS 模拟，玩家可拥有多种武器；四种武器（冲锋枪、散弹枪、手枪、匕首），
+    //默认拿匕首；在玩家类里写一个方法，拾取不同武器来替换当前持有的。
+    class Wuqi
+    {
+        public string name;
+        public Wuqi()//无参构造函数
+        {
+
+        }
+        public Wuqi(string n)
+        {
+            name = n;
+        }
+        public void WuqiAtk()
+        {
+            Console.WriteLine("当前使用的武器是{0}", name);
+        }
+    }
+    class Cfq : Wuqi
+    {
+        public Cfq() { name = "冲锋枪"; }
+    }
+    class Sdq : Wuqi
+    {
+        public Sdq() { name = "散弹枪"; }
+    }
+    class Sq : Wuqi
+    {
+        public Sq() { name = "手枪"; }
+    }
+    class Bishou : Wuqi
+    {
+        public Bishou() { name = "匕首"; }
+    }
+    class Player
+    {
+        private Wuqi weapon;
+        public Player()
+        {
+            weapon = new Bishou();
+        }
+        public void PickUp(Wuqi w)        // 参数也是父类
+        {
+            weapon = w;                   // 子类对象直接塞进父类变量（里氏替换）
+
+            // 公共提示写在这里：四个 case 都会走到，只写一次
+            // 用 w.name，选哪把就打印哪把，不用写死武器名
+            Console.WriteLine("您当前已切换您的武器，当前使用的是{0}", w.name);
+        }
+        public string GetWeaponName()      // ✅ 新增：有返回值，专门用来查询
+        {
+            return weapon.name;
+        }
+    }
+    #endregion
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            #region 练习题二
+            Player p = new Player();
+            while (true)                  // 菜单要能反复选，所以套一层循环
+            {
+                Console.WriteLine("========== 当前的武器是：{0} ==========", p.GetWeaponName());
+                Console.WriteLine("1 冲锋枪   2 散弹枪   3 手枪   4 匕首");
+                Console.WriteLine(" 0 退出");
+                Console.Write("请输入编号：");
+
+                // ReadLine 拿到的是字符串，直接 switch 字符串
+                // 不用 Convert.ToInt32，用户输字母也不会崩
+                string op = Console.ReadLine();
+
+                switch (op)
+                {
+                    case "1": p.PickUp(new Cfq()); break;
+                    case "2": p.PickUp(new Sdq()); break;
+                    case "3": p.PickUp(new Sq()); break;
+                    case "4": p.PickUp(new Bishou()); break;
+                    case "0":
+                        Console.WriteLine("已退出游戏");
+                        return;                       // 直接结束 Main，跳出 while
+                    default:
+                        Console.WriteLine("输入有误，请输入 0~5");
+                        break;
+                }
+
+                Console.WriteLine();      // 空一行，下一轮菜单看着清楚
+            }
+        }
+    }
+}
+                #endregion
+            
+ 
