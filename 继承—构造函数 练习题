@@ -1,0 +1,55 @@
+namespace lesson14继承的构造函数__练习题
+{//题目：有一个打工人基类，有工种、工作内容两个特征，一个工作方法
+    //有程序员、策划、美术分别继承打工人
+    //请用继承中的构造函数这个知识点
+    //实例化三个对象，分别是程序员、策划、美术
+    class Dgr
+    {
+        public string gz;
+        public string gznr;
+        public Dgr(string gz,string gznr)
+        {
+            this.gz = gz;
+            this.gznr = gznr;
+        }
+        public  void Work()
+        {
+            Console.WriteLine("我的工种{0}，我的工作内容{1}", gz, gznr);
+        }
+    }
+    class Cxy:Dgr
+    {
+        public Cxy():base("程序员","写代码")
+        {
+
+        }
+    }
+
+    class Ch : Dgr
+    {
+        public Ch() : base("策划", "筹备游戏")
+        {
+
+        }
+    }
+    class Ms : Dgr
+    {
+        public Ms() : base("美术", "图片，模型的制作")
+        {
+
+        }
+    }
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Cxy cxy = new Cxy();
+            cxy.Work();
+            Ch ch = new Ch();
+            ch.Work();
+            Ms ms = new Ms();
+            ms.Work();
+        }
+    }
+}
